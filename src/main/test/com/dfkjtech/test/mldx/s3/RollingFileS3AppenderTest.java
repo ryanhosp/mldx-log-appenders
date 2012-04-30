@@ -18,6 +18,8 @@ package com.dfkjtech.test.mldx.s3;
 
 import org.apache.log4j.Logger;
 
+import com.dfkjtech.mldx.AppenderUtil;
+
 public class RollingFileS3AppenderTest {
 	private static final Logger log = Logger.getLogger(RollingFileS3AppenderTest.class);
 	
@@ -31,5 +33,6 @@ public class RollingFileS3AppenderTest {
 				break;
 			}
 		}
+		AppenderUtil.rollOverAppenders("com.dfkjtech");
 	}
 }
