@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+	Copyright 2012 DFKJ Technologies Pte Ltd
+	    
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	  
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="TEST_ENC" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
+		<param name="File" value="logs/test.log" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="Bucket" value="dfkjtest" />
+		<param name="CredentialsProvider" value="com.dfkjtech.mldx.s3.credentials.EncryptedFileCredentialsProvider" />
+		<param name="CredentialsFilePath" value="${mldx.credentials.file.path}" />
+		<param name="CredentialsFilePassword" value="${mldx.credentials.file.password}" />
+		<param name="MaxBackupIndex" value="1" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="TEST_ENV" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
+		<param name="File" value="logs/test.log" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="Bucket" value="dfkjtest" />
+		<param name="CredentialsProvider" value="com.dfkjtech.mldx.s3.credentials.EnvironmentCredentialsProvider" />
+		<param name="AccessKeyEnvVarName" value="AWS_ACCESS_KEY" />
+		<param name="SecretKeyEnvVarName" value="AWS_SECRET_KEY" />
+		<param name="MaxBackupIndex" value="1" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
+		</layout>
+	</appender>
+ 	<logger name="com.dfkjtech" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="TEST_ENV" />
+	</logger>
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>

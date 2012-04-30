@@ -1,0 +1,33 @@
+<!--
+	Copyright 2012 DFKJ Technologies Pte Ltd
+	    
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	  
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<project name="mldx-log-appenders" default="jar" basedir="." >
+	<property name="dist.dir" value="${basedir}/dist"/>
+	<property name="classes.dir" value="${basedir}/bin"/>
+	<property name="src.dir" value="${basedir}/src/main/java"/>
+	<property name="api.file" value="${dist.dir}/${ant.project.name}.jar"/>
+
+	<target name="init">
+		<delete file="${api.file}"/>		
+	</target>
+	
+	<target name="jar" depends="init">
+		<jar destfile="${api.file}">
+			<fileset dir="${classes.dir}" includes="com/dfkjtech/mldx/**/*.class" />
+		</jar>
+	</target>
+
+</project>

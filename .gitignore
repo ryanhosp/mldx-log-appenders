@@ -1,0 +1,6 @@
+
+logs/*
+
+dist/mldx-log-appenders.jar
+
+bin/*
