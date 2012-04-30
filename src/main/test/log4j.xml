@@ -24,7 +24,7 @@
 			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
 		</layout>
 	</appender>
-
+<!-- 
 	<appender name="TEST_ENC" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
 		<param name="File" value="logs/test.log" />
 		<param name="MaxFileSize" value="1MB" />
@@ -37,7 +37,8 @@
 			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
 		</layout>
 	</appender>
-	
+ -->
+ 
 	<appender name="TEST_ENV" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
 		<param name="File" value="logs/test.log" />
 		<param name="MaxFileSize" value="1MB" />
