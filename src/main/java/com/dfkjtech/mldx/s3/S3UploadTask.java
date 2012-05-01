@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import org.apache.log4j.helpers.LogLog;
 import org.jets3t.service.ServiceException;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.StorageObject;
@@ -35,11 +36,20 @@ public class S3UploadTask implements Runnable {
 	public S3UploadTask(ArrayList<File> uploadFileList, String bucket, AbstractCredentialsProvider credentialsProvider){
 		this.uploadFileList = uploadFileList;
 		this.bucket = bucket;
-		awsCredentials = credentialsProvider.getAWSCredentials();
+		if(credentialsProvider == null) {
+			awsCredentials = null;
+		}
+		else {
+			awsCredentials = credentialsProvider.getAWSCredentials();
+		}
 	}
 
 	@Override
 	public void run() {
+		if(awsCredentials == null) {
+			LogLog.error("No available AWS credentials, file will not be uploaded.");
+			return;
+		}
 		RestS3Service s3Client;
 		try {
 			s3Client = new RestS3Service(awsCredentials);
@@ -50,13 +60,13 @@ public class S3UploadTask implements Runnable {
 			}
 		}
 		catch (ServiceException e) {
-			throw new RuntimeException(e);
+			LogLog.error("Exception uploading file to S3 " + e.getClass().getName() + ", " + e.getMessage(),e);
 		}
 		catch (IOException e) {
-			throw new RuntimeException(e);
+			LogLog.error("Exception uploading file to S3 " + e.getClass().getName() + ", " + e.getMessage(),e);
 		}
 		catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
+			LogLog.error("Exception uploading file to S3 " + e.getClass().getName() + ", " + e.getMessage(),e);
 		}
 	}
 }

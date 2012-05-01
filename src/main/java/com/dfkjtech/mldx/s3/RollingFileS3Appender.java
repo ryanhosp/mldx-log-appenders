@@ -28,6 +28,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.log4j.RollingFileAppender;
+import org.apache.log4j.helpers.LogLog;
 
 import com.dfkjtech.mldx.s3.credentials.AbstractCredentialsProvider;
 
@@ -77,16 +78,16 @@ public class RollingFileS3Appender extends RollingFileAppender {
 				credentialsProviderInstance.setParams(credentialsProviderParams);
 			}
 			catch (InstantiationException e) {
-				// TODO: improve exception handling
-				throw new RuntimeException(e);
+				LogLog.error("Error getting credentials provider " + credentialsProvider, e);
+				return null;
 			}
 			catch (IllegalAccessException e) {
-				// TODO: improve exception handling
-				throw new RuntimeException(e);
+				LogLog.error("Error getting credentials provider " + credentialsProvider, e);
+				return null;
 			}
 			catch (ClassNotFoundException e) {
-				// TODO: improve exception handling
-				throw new RuntimeException(e);
+				LogLog.error("Error getting credentials provider " + credentialsProvider, e);
+				return null;
 			}
 		}
 		return credentialsProviderInstance;
