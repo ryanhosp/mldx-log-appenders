@@ -33,6 +33,6 @@ public class RollingFileS3AppenderTest {
 				break;
 			}
 		}
-		AppenderUtil.rollOverAppenders("com.dfkjtech");
+		AppenderUtil.rollOverAppenders("com.dfkjtech",true);
 	}
 }

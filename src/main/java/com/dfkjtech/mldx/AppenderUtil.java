@@ -15,15 +15,16 @@ public class AppenderUtil {
 	 * Typically this is called on shutdown of server.
 	 * 
 	 * @param loggerName: Use same name as configured in log4j logger configuration.
+	 * @param synchronousUpload: Perform the uploading synchronously or not.
 	 */
-	public static void rollOverAppenders(String loggerName) {
+	public static void rollOverAppenders(String loggerName, boolean synchronousUpload) {
 		Logger logger = Logger.getLogger(loggerName);
 		@SuppressWarnings("rawtypes")
 		Enumeration appenders = logger.getAllAppenders();
 		while(appenders.hasMoreElements()){
 			Appender appender = (Appender) appenders.nextElement();
 			if(appender instanceof RollingFileS3Appender) {
-				((RollingFileS3Appender) appender).rollOver();
+				((RollingFileS3Appender) appender).rollOver(synchronousUpload);
 			}
 		}		
 	}

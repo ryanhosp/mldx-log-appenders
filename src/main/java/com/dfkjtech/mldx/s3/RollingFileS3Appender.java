@@ -44,8 +44,7 @@ public class RollingFileS3Appender extends RollingFileAppender {
 	
 	private HashMap<String, String> credentialsProviderParams = new HashMap<String, String>();
 		
-	@Override
-	public void rollOver() {
+	public void rollOver(boolean synchronousUpload) {
 		final ArrayList<File> uploadFileList = new ArrayList<File>();
 		// before rollover, rename all backup files (if any) for copying
 		prepareFilesForUploading(uploadFileList);
@@ -56,8 +55,19 @@ public class RollingFileS3Appender extends RollingFileAppender {
 		prepareFilesForUploading(uploadFileList);
 		
 		S3UploadTask uploadTask = new S3UploadTask(uploadFileList, bucket, getCredentialsProviderInstance());
-		Thread t = new Thread(uploadTask);
-		t.start();
+		if(synchronousUpload) {
+			uploadTask.run();
+		}
+		else {
+			Thread t = new Thread(uploadTask);
+			t.start();
+		}
+	}
+	
+	@Override
+	public void rollOver() {
+		// by default, perform the rollover and S3 upload asynchronously
+		rollOver(false);
 	}
 	
 	private AbstractCredentialsProvider getCredentialsProviderInstance(){
