@@ -1,5 +1,7 @@
 /*
- * Copyright 2012 DFKJ Technologies Pte Ltd
+ * MLDX Log Appenders
+ * Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+ * Copyright 2012 - 2013 Ho Siaw Ping Ryan
  *    
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.dfkjtech.mldx.s3.credentials;
+package com.r573.mldx.s3.credentials;
 
 import org.jets3t.service.security.AWSCredentials;
 import org.jets3t.service.security.ProviderCredentials;
 
-public class Log4JParamCredentialsProvider extends AbstractCredentialsProvider {
+public class EnvironmentCredentialsProvider extends AbstractCredentialsProvider {
 
 	@Override
 	public ProviderCredentials getAWSCredentials() {
-		String accessKey = params.get("accessKey");
-		String secretKey = params.get("secretKey");
+		String accessKeyEnvVarName = params.get("accessKeyEnvVarName");
+		String secretKeyEnvVarName = params.get("secretKeyEnvVarName");
+		
+		String accessKey = System.getenv(accessKeyEnvVarName);
+		String secretKey = System.getenv(secretKeyEnvVarName);
 		ProviderCredentials awsCredentials = new AWSCredentials(accessKey, secretKey);
+		
 		return awsCredentials;
 	}
 }

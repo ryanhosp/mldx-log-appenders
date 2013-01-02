@@ -1,5 +1,7 @@
 /*
- * Copyright 2012 DFKJ Technologies Pte Ltd
+ * MLDX Log Appenders
+ * Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+ * Copyright 2012 - 2013 Ho Siaw Ping Ryan
  *    
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dfkjtech.mldx.s3;
+package com.r573.mldx.s3;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -30,7 +32,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.log4j.RollingFileAppender;
 import org.apache.log4j.helpers.LogLog;
 
-import com.dfkjtech.mldx.s3.credentials.AbstractCredentialsProvider;
+import com.r573.mldx.s3.credentials.AbstractCredentialsProvider;
 
 public class RollingFileS3Appender extends RollingFileAppender {
 	// 3.5 billion. ZIP limit is 4 billion. Some buffer to be safe.

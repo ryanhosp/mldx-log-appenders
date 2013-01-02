@@ -2,7 +2,9 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <!--
-	Copyright 2012 DFKJ Technologies Pte Ltd
+	MLDX Log Appenders
+	Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+	Copyright 2012 - 2013 Ho Siaw Ping Ryan
 	    
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -25,11 +27,11 @@
 		</layout>
 	</appender>
 <!-- 
-	<appender name="TEST_ENC" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
+	<appender name="TEST_ENC" class="com.r573.mldx.s3.RollingFileS3Appender">
 		<param name="File" value="logs/test.log" />
 		<param name="MaxFileSize" value="1MB" />
-		<param name="Bucket" value="dfkjtest" />
-		<param name="CredentialsProvider" value="com.dfkjtech.mldx.s3.credentials.EncryptedFileCredentialsProvider" />
+		<param name="Bucket" value="mldxtest" />
+		<param name="CredentialsProvider" value="com.r573.mldx.s3.credentials.EncryptedFileCredentialsProvider" />
 		<param name="CredentialsFilePath" value="${mldx.credentials.file.path}" />
 		<param name="CredentialsFilePassword" value="${mldx.credentials.file.password}" />
 		<param name="MaxBackupIndex" value="1" />
@@ -39,11 +41,11 @@
 	</appender>
  -->
  
-	<appender name="TEST_ENV" class="com.dfkjtech.mldx.s3.RollingFileS3Appender">
+	<appender name="TEST_ENV" class="com.r573.mldx.s3.RollingFileS3Appender">
 		<param name="File" value="logs/test.log" />
 		<param name="MaxFileSize" value="1MB" />
-		<param name="Bucket" value="dfkjtest" />
-		<param name="CredentialsProvider" value="com.dfkjtech.mldx.s3.credentials.EnvironmentCredentialsProvider" />
+		<param name="Bucket" value="mldxtest" />
+		<param name="CredentialsProvider" value="com.r573.mldx.s3.credentials.EnvironmentCredentialsProvider" />
 		<param name="AccessKeyEnvVarName" value="AWS_ACCESS_KEY" />
 		<param name="SecretKeyEnvVarName" value="AWS_SECRET_KEY" />
 		<param name="MaxBackupIndex" value="1" />
@@ -51,7 +53,7 @@
 			<param name="ConversionPattern" value="%d [%t] %-5p %c.%x - %m%n" />
 		</layout>
 	</appender>
- 	<logger name="com.dfkjtech" additivity="false">
+ 	<logger name="com.r573" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="TEST_ENV" />
 	</logger>

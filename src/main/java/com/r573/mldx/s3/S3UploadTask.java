@@ -1,5 +1,7 @@
 /*
- * Copyright 2012 DFKJ Technologies Pte Ltd
+ * MLDX Log Appenders
+ * Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+ * Copyright 2012 - 2013 Ho Siaw Ping Ryan
  *    
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dfkjtech.mldx.s3;
+package com.r573.mldx.s3;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.StorageObject;
 import org.jets3t.service.security.ProviderCredentials;
 
-import com.dfkjtech.mldx.s3.credentials.AbstractCredentialsProvider;
+import com.r573.mldx.s3.credentials.AbstractCredentialsProvider;
 
 public class S3UploadTask implements Runnable {
 	private ProviderCredentials awsCredentials;

@@ -1,2 +1,3 @@
 MLDX Log Appenders
-Copyright 2012 DFKJ Technologies Pte Ltd
+Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+Copyright 2012 - 2013 Ho Siaw Ping Ryan

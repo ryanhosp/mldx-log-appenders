@@ -1,5 +1,7 @@
 /*
- * Copyright 2012 DFKJ Technologies Pte Ltd
+ * MLDX Log Appenders
+ * Project hosted at https://github.com/ryanhosp/mldx-log-appenders/
+ * Copyright 2012 - 2013 Ho Siaw Ping Ryan
  *    
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.r573.mldx.s3.credentials;
 
-package com.dfkjtech.test.mldx.s3;
+import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.jets3t.service.security.ProviderCredentials;
 
-import com.dfkjtech.mldx.AppenderUtil;
+public abstract class AbstractCredentialsProvider {
+	protected HashMap<String, String> params;
 
-public class RollingFileS3AppenderTest {
-	private static final Logger log = Logger.getLogger(RollingFileS3AppenderTest.class);
-	
-	public static void main(String[] args) {
-		for(int i = 0; i < 20000; i++) {
-			log.info("Test log content: " + i);
-			try {
-				Thread.sleep(4);
-			}
-			catch (InterruptedException e) {
-				break;
-			}
-		}
-		AppenderUtil.rollOverAppenders("com.dfkjtech",true);
+	public HashMap<String, String> getParams() {
+		return params;
 	}
+	public void setParams(HashMap<String, String> params) {
+		this.params = params;
+	}
+	
+	public abstract ProviderCredentials getAWSCredentials();
 }
