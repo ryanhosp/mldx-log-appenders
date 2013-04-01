@@ -2,6 +2,7 @@ mldx-log-appenders
 ==================
 
 Log4J Appenders that rolls over into AWS S3.
+Note: LogBack support now available in the dev branch
 
 This is a new project. Much remains to be done, including documentation.
 
