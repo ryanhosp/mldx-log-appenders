@@ -1,13 +1,13 @@
 mldx-log-appenders
 ==================
 
-Log4J Appenders that rolls over into AWS S3.
+Log4J & LogBack Appenders that rolls over into AWS S3.
 
 This is a new project. Much remains to be done, including documentation.
 
 However, the code works so feel free to use it if it meets your needs.
 
-Tested with Log4J 1.2.16.
+Tested with Log4J 1.2.16. LogBack capabilities is still undergoing testing.
 
 Supports rollover based on file size only. 
 
