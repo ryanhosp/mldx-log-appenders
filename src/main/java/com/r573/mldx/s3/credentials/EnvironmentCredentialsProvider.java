@@ -27,6 +27,13 @@ public class EnvironmentCredentialsProvider extends AbstractCredentialsProvider 
 		String accessKeyEnvVarName = params.get("accessKeyEnvVarName");
 		String secretKeyEnvVarName = params.get("secretKeyEnvVarName");
 		
+		if(accessKeyEnvVarName == null) {
+			throw new IllegalStateException("Parameter accessKeyEnvVarName is not provided");
+		}
+		if(secretKeyEnvVarName == null) {
+			throw new IllegalStateException("Parameter secretKeyEnvVarName is not provided");
+		}
+		
 		String accessKey = System.getenv(accessKeyEnvVarName);
 		String secretKey = System.getenv(secretKeyEnvVarName);
 		ProviderCredentials awsCredentials = new AWSCredentials(accessKey, secretKey);

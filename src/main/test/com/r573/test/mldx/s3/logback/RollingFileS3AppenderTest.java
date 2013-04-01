@@ -15,14 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.r573.test.mldx.s3;
+package com.r573.test.mldx.s3.logback;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.r573.mldx.AppenderUtil;
 
 public class RollingFileS3AppenderTest {
-	private static final Logger log = Logger.getLogger(RollingFileS3AppenderTest.class);
+	private static Logger log = LoggerFactory.getLogger(RollingFileS3AppenderTest.class);
 	
 	public static void main(String[] args) {
 		for(int i = 0; i < 20000; i++) {
@@ -34,6 +35,6 @@ public class RollingFileS3AppenderTest {
 				break;
 			}
 		}
-		AppenderUtil.rollOverAppenders("com.r573",true);
+		AppenderUtil.rollOverAppendersLogBack("com.r573",true);
 	}
 }

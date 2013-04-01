@@ -1,0 +1,25 @@
+<configuration>
+	<property scope="Context" name="BUCKET" value="mldxtest" />
+	
+	<appender name="FILE" class="com.r573.mldx.logger.logback.RollingFileS3Appender">
+		<file>logs/test.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>logs/test.log.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>1</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>1MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.r573" level="DEBUG">
+		<appender-ref ref="FILE" />
+	</logger>
+	
+</configuration>

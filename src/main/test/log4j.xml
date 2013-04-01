@@ -41,7 +41,7 @@
 	</appender>
  -->
  
-	<appender name="TEST_ENV" class="com.r573.mldx.s3.RollingFileS3Appender">
+	<appender name="TEST_ENV" class="com.r573.mldx.logger.log4j.RollingFileS3Appender">
 		<param name="File" value="logs/test.log" />
 		<param name="MaxFileSize" value="1MB" />
 		<param name="Bucket" value="mldxtest" />
